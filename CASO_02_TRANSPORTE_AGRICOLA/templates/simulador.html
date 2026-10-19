@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Transporte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <span class="logo-icon">🌾</span>
+            <div class="brand-text">
+                <h2>AGROLOGÍSTA</h2>
+                <p>Transporte Agrícola</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/simulador" class="active">Simulador</a>
+            <a href="/comparar">Comparar rutas</a>
+            <a href="/modelo">Modelo y datos</a>
+            <a href="/simulador" class="nav-btn">Calcular transporte ↗</a>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <div class="form-side">
+            <form action="/simulador" method="POST">
+                <div class="input-group">
+                    <label>Distancia del recorrido (km)</label>
+                    <input type="number" step="any" name="distancia_km" value="{{ v.distancia }}" required>
+                    <span class="hint">Entre 3 y 165 kilómetros.</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Peso de la carga (kg)</label>
+                    <input type="number" step="any" name="carga_kg" value="{{ v.carga }}" required>
+                    <span class="hint">Entre 50 y 2,050 kilogramos.</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Tipo de vía</label>
+                    <select name="via_no_asfaltada" style="width:100%; padding:14px; border-radius:8px; border:2px solid #e2e8f0; font-weight:600; background:#f8fafc;">
+                        <option value="0" {% if v.via == 0 %}selected{% endif %}>Vía Asfaltada / Pavimentada</option>
+                        <option value="1" {% if v.via == 1 %}selected{% endif %}>Vía No Asfaltada / Trocha</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-calcular">Calcular Costo de Flete</button>
+            </form>
+
+            {% if resultado is not none %}
+                <div class="resultado-box">
+                    <span>Costo Estimado</span>
+                    <h3>S/ {{ resultado }}</h3>
+                </div>
+            {% endif %}
+
+            {% if error %}
+                <p style="color:red; margin-top:15px;">{{ error }}</p>
+            {% endif %}
+        </div>
+
+        <div class="info-side">
+            <h2>Tu ruta empieza con tres datos.</h2>
+            <p>Completa las características del viaje. El sistema calculará el costo estimado en soles aplicando el modelo de regresión entrenado con tus datos históricos.</p>
+        </div>
+    </div>
+</body>
+</html>

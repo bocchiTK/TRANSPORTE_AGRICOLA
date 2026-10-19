@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Comparar Rutas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <span class="logo-icon">🌾</span>
+            <div class="brand-text">
+                <h2>AGROLOGÍSTA</h2>
+                <p>Transporte Agrícola</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/simulador">Simulador</a>
+            <a href="/comparar" class="active">Comparar rutas</a>
+            <a href="/modelo">Modelo y datos</a>
+            <a href="/simulador" class="nav-btn">Calcular transporte ↗</a>
+        </div>
+    </nav>
+
+    <form action="/comparar" method="POST">
+        <div class="comparison-grid">
+            <!-- Escenario A -->
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-badge">A</span>
+                    <h3>Escenario A (Prueba 1)</h3>
+                </div>
+                <div class="input-group">
+                    <label>Distancia (km)</label>
+                    <input type="number" step="any" name="dist_a" value="{{ va.distancia }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Carga (kg)</label>
+                    <input type="number" step="any" name="carga_a" value="{{ va.carga }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Tipo de vía</label>
+                    <select name="via_a" style="width:100%; padding:12px; border-radius:8px; border:2px solid #e2e8f0;">
+                        <option value="0" {% if va.via == 0 %}selected{% endif %}>Asfaltada</option>
+                        <option value="1" {% if va.via == 1 %}selected{% endif %}>No Asfaltada</option>
+                    </select>
+                </div>
+                {% if res_a is not none %}
+                <div class="resultado-box" style="margin-top:15px;">
+                    <span>Costo A</span>
+                    <h3>S/ {{ res_a }}</h3>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Escenario B -->
+            <div class="scenario-card">
+                <div class="scenario-header">
+                    <span class="scenario-badge" style="background:#a3cfbb;">B</span>
+                    <h3>Escenario B (Prueba 2)</h3>
+                </div>
+                <div class="input-group">
+                    <label>Distancia (km)</label>
+                    <input type="number" step="any" name="dist_b" value="{{ vb.distancia }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Carga (kg)</label>
+                    <input type="number" step="any" name="carga_b" value="{{ vb.carga }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Tipo de vía</label>
+                    <select name="via_b" style="width:100%; padding:12px; border-radius:8px; border:2px solid #e2e8f0;">
+                        <option value="0" {% if vb.via == 0 %}selected{% endif %}>Asfaltada</option>
+                        <option value="1" {% if vb.via == 1 %}selected{% endif %}>No Asfaltada</option>
+                    </select>
+                </div>
+                {% if res_b is not none %}
+                <div class="resultado-box" style="margin-top:15px;">
+                    <span>Costo B</span>
+                    <h3>S/ {{ res_b }}</h3>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div style="text-align: center; padding-bottom: 40px;">
+            <button type="submit" class="btn-hero" style="border:none; cursor:pointer; font-size:16px;">Comparar Ambos Escenarios</button>
+        </div>
+    </form>
+</body>
+</html>

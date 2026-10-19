@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Transporte Agrícola - Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <span class="logo-icon">🌾</span>
+            <div class="brand-text">
+                <h2>AGROLOGÍSTA</h2>
+                <p>Transporte Agrícola</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="/" class="active">Inicio</a>
+            <a href="/simulador">Simulador</a>
+            <a href="/comparar">Comparar rutas</a>
+            <a href="/modelo">Modelo y datos</a>
+            <a href="/simulador" class="nav-btn">Calcular transporte ↗</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Cada cosecha al siguiente destino con precisión.</h1>
+        <p>Sistema inteligente de estimación de costos logísticos y fletes agrícolas basado en machine learning.</p>
+        <a href="/simulador" class="btn-hero">Iniciar Simulador ↗</a>
+    </header>
+</body>
+</html>

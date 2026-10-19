@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modelo y Datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <span class="logo-icon">🌾</span>
+            <div class="brand-text">
+                <h2>AGROLOGÍSTA</h2>
+                <p>Transporte Agrícola</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="/">Inicio</a>
+            <a href="/simulador">Simulador</a>
+            <a href="/comparar">Comparar rutas</a>
+            <a href="/modelo" class="active">Modelo y datos</a>
+            <a href="/simulador" class="nav-btn">Calcular transporte ↗</a>
+        </div>
+    </nav>
+
+    <div style="max-width: 800px; margin: 50px auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h2 style="color: #11261a; margin-bottom: 20px;">Detalles técnicos del modelo</h2>
+        <p style="color: #4a5d4e; line-height: 1.6; margin-bottom: 20px;">
+            Este sistema implementa un algoritmo de <strong>Regresión Lineal</strong> entrenado con registros históricos de fletes agrícolas (<code>datos.csv</code>).
+        </p>
+        <ul style="color: #4a5d4e; line-height: 1.8; padding-left: 20px; margin-bottom: 20px;">
+            <li><strong>Variables de Entrada ($X$):</strong> Distancia recorrida (`distancia_km`), Peso de la cosecha (`carga_kg`) y Estado de la vía (`via_no_asfaltada`).</li>
+            <li><strong>Variable Objetivo ($y$):</strong> Costo total del transporte en Soles (`costo_transporte_soles`).</li>
+            <li><strong>Métricas de Evaluación:</strong> MAE (Error Absoluto Medio) y Coeficiente de determinación ($R^2$).</li>
+        </ul>
+        <div style="background: #fef9e7; border-left: 4px solid #f1c40f; padding: 15px; border-radius: 4px; font-size: 13px; color: #7d6608;">
+            ⚠️ <strong>Nota institucional:</strong> Las predicciones sirven como herramienta de referencia para cotizaciones y logística, debiendo validarse frente a imprevistos climáticos o mecánicos.
+        </div>
+    </div>
+</body>
+</html>
